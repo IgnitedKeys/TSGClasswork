@@ -33,7 +33,14 @@ public class AddressBookDaoFileImplTest {
 
     @Test
     public void testAddAddress() throws Exception {
-
+        //added setUp() here and it worked???
+        String testFile = "testBook.txt";
+        new FileWriter(testFile);
+        //using new constructor with test txt file
+        testDao = new AddressBookDaoFileImpl(testFile);
+        
+        
+        
         String lastName = "Potter";
         Address address = new Address(lastName);
         address.setFirstName("Harry");
@@ -74,7 +81,7 @@ public class AddressBookDaoFileImplTest {
         assertTrue(testDao.getAllAddresses().contains(firstAddress), "the list should include Potter");
         assertTrue(testDao.getAllAddresses().contains(secondAddress), "the list should include Weasley");
     }
-
+    
     @Test
     public void testRemoveAddress() throws Exception {
         Address firstAddress = new Address("Potter");
@@ -84,38 +91,38 @@ public class AddressBookDaoFileImplTest {
         Address secondAddress = new Address("Weasley");
         secondAddress.setFirstName("Ron");
         secondAddress.setStreetAddress("The Burrow");
-
+        
         //add to Dao
         testDao.addAddress(firstAddress.getLastName(), firstAddress);
         testDao.addAddress(secondAddress.getLastName(), secondAddress);
-
+        
         //remove
         Address removeAddress = testDao.removeAddreess(firstAddress.getLastName());
-
+        
         //Assert
         assertEquals(removeAddress, firstAddress, "The removed Address should be Potter");
-
+        
         List<Address> allAddresses = testDao.getAllAddresses();
         assertNotNull(allAddresses, "All Addresses should not be null ");
         assertEquals(1, allAddresses.size(), "All addresses should equal 1");
-
+        
         assertFalse(allAddresses.contains(firstAddress), "The list should NOT include Potter");
         assertTrue(allAddresses.contains(secondAddress), "the list should contains Weasley");
-
+        
         //remove second address
         removeAddress = testDao.removeAddreess(secondAddress.getLastName());
-        assertEquals(removeAddress, secondAddress, "the removed Address should be Weasley");
-
+        assertEquals(removeAddress, secondAddress,"the removed Address should be Weasley");
+        
         allAddresses = testDao.getAllAddresses();
         assertTrue(allAddresses.isEmpty(), "the list should be empty");
-
+        
         Address retrievedAddress = testDao.findAddress(firstAddress.getLastName());
         assertNull(retrievedAddress, "Potter was removed");
-
+        
         retrievedAddress = testDao.findAddress(secondAddress.getLastName());
         assertNull(retrievedAddress, "Weasley was removed");
     }
-
+    
     @Test
     public void testGetAddressCount() throws Exception {
         Address firstAddress = new Address("Potter");
@@ -125,13 +132,14 @@ public class AddressBookDaoFileImplTest {
         Address secondAddress = new Address("Weasley");
         secondAddress.setFirstName("Ron");
         secondAddress.setStreetAddress("The Burrow");
-
+        
         //add to Dao
         testDao.addAddress(firstAddress.getLastName(), firstAddress);
         testDao.addAddress(secondAddress.getLastName(), secondAddress);
-
+        
         //assert
-        assertEquals(2, testDao.getAddressCount(), "There should be 2 addresses in the book");
-
+        assertEquals(2, testDao.getAddressCount(),"There should be 2 addresses in the book" );
+        
     }
 }
+

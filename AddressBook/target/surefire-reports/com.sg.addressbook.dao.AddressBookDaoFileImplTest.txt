@@ -1,4 +1,20 @@
 -------------------------------------------------------------------------------
 Test set: com.sg.addressbook.dao.AddressBookDaoFileImplTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.08 sec - in com.sg.addressbook.dao.AddressBookDaoFileImplTest
+Tests run: 4, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec <<< FAILURE!
+com.sg.addressbook.dao.AddressBookDaoFileImplTest.testAddAddress()  Time elapsed: 0.002 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.sg.addressbook.dao.AddressBookDaoFileImplTest.testAddAddress(AddressBookDaoFileImplTest.java:50)
+
+com.sg.addressbook.dao.AddressBookDaoFileImplTest.testGetAllAddresses()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.sg.addressbook.dao.AddressBookDaoFileImplTest.testGetAllAddresses(AddressBookDaoFileImplTest.java:71)
+
+com.sg.addressbook.dao.AddressBookDaoFileImplTest.testRemoveAddress()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.sg.addressbook.dao.AddressBookDaoFileImplTest.testRemoveAddress(AddressBookDaoFileImplTest.java:96)
+
+com.sg.addressbook.dao.AddressBookDaoFileImplTest.testGetAddressCount()  Time elapsed: 0 sec  <<< FAILURE!
+java.lang.NullPointerException
+	at com.sg.addressbook.dao.AddressBookDaoFileImplTest.testGetAddressCount(AddressBookDaoFileImplTest.java:137)
+

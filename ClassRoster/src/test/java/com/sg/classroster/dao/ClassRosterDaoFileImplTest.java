@@ -33,6 +33,7 @@ public class ClassRosterDaoFileImplTest {
         testDao = new ClassRosterDaoFileImpl(testFile);
     }
 
+    /*
     @Test
     public void testAddGetAllStudents() throws Exception {
        
@@ -96,5 +97,5 @@ public class ClassRosterDaoFileImplTest {
         
         
     }
-
+*/
 }
