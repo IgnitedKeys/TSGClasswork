@@ -1,0 +1,64 @@
+DROP DATABASE IF EXISTS MovieCatalogue;
+CREATE DATABASE IF NOT EXISTS MovieCatalogue;
+USE MovieCatalogue;
+
+CREATE TABLE IF NOT EXISTS Genre (
+	GenreId INT PRIMARY KEY AUTO_INCREMENT,
+    GenreName VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Director (
+	DirectorId INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    BirthDate DATE NULL
+);
+
+CREATE TABLE IF NOT EXISTS Rating (
+	RatingId INT PRIMARY KEY AUTO_INCREMENT,
+    RatingName CHAR(5) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Actor (
+	ActorId INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(30) NOT NULL,
+    LastName VARCHAR(30) NOT NULL,
+    BirthDate DATE NULL
+);
+
+CREATE TABLE IF NOT EXISTS Movie (
+	MovieID INT PRIMARY KEY AUTO_INCREMENT,
+    Title VARCHAR(128) NOT NULL,
+    ReleaseDate DATE NOT NULL,
+    RatingId INT NULL,
+    DirectorId INT NULL,
+    GenreId INT NOT NULL
+);
+ALTER TABLE Movie
+	ADD CONSTRAINT `fk_MovieRating`
+    FOREIGN KEY(RatingId)
+    REFERENCES Rating(RatingId);
+ALTER TABLE Movie
+	ADD CONSTRAINT `fk_MovieDirector`
+    FOREIGN KEY(DirectorId)
+    REFERENCES Director(DirectorId);
+ALTER TABLE Movie 
+	ADD CONSTRAINT `fk_MovieGenre` 
+    FOREIGN KEY(GenreId)
+	REFERENCES Genre(GenreId);
+
+CREATE TABLE IF NOT EXISTS CastMember (
+	CastMemberId INT PRIMARY KEY AUTO_INCREMENT,
+    Role VARCHAR(50) NOT NULL,
+    ActorId INT NOT NULL,
+    MovieId INT NOT NULL    
+);
+
+ALTER TABLE CastMember
+	ADD CONSTRAINT `fk_CastMemberActor`
+    FOREIGN KEY(ActorId)
+    REFERENCES Actor(ActorId);
+ALTER TABLE CastMember
+	ADD CONSTRAINT `fk_CastMemberMovie`
+    FOREIGN KEY(MovieId)
+    REFERENCES Movie(MovieId);
